@@ -2,6 +2,8 @@ const path = require("path");
 const express = require("express");
 const app = express();
 const hbs = require ("hbs");
+port = 3000;
+
 
 
 const staticPath = path.join(__dirname, "../public");
@@ -21,10 +23,15 @@ app.get("/", (req, res) => {
     });
 });
 
-port = 3000;
 
 app.get("/about", (req, res) => {
     res.render("about");
+});
+
+app.get("*", (req,res) => {
+    res.render("404", {
+        errorcomment: "oops page coudnt found",
+    });
 });
 
 app.listen(port, () => {
