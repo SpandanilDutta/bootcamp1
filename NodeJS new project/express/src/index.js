@@ -3,20 +3,23 @@ const express = require("express");
 const app = express();
 
 
-const staticPath = path.join(__dirname, "../public");
+// const staticPath = path.join(__dirname, "../public");
 
-app.use(express.static(staticPath));
+app.set("view engine", "hbs");
+
+// app.use(express.static(staticPath));
+
+app.get("/", (req, res) => {
+    res.render("index", {
+        emotion : "mast",
+    });
+});
 
 port = 3000;
 
 app.get("/", (req, res) => {
     res.send("Hello from the express");
 });
-
-app.get("/about", (req, res) => {
-    res.send("Hello from the about");
-});
-
 
 app.listen(port, () => {
     console.log (`Listening to the port ${port}`)
