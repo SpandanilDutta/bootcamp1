@@ -3,16 +3,17 @@ const express = require("express");
 const app = express();
 const hbs = require ("hbs");
 
-const templatepath = path.join(__dirname, "../template");
+
 const staticPath = path.join(__dirname, "../public");
+const templatepath = path.join(__dirname, "../template/views");
 const partialpaths = path.join(__dirname, "../template/partials");
 
-hbs.registerPartials(partialpaths);
 
 app.set("view engine", "hbs");
 app.set("views", templatepath);
+hbs.registerPartials(partialpaths);
 
-app.use(express.static(staticPath));
+// app.use(express.static(staticPath));
 
 app.get("/", (req, res) => {
     res.render("index", {
